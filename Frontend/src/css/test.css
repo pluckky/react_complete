@@ -1,0 +1,106 @@
+.main-grid {
+padding: 2rem;
+font-family: sans-serif;
+margin: 5% 10%;
+}
+
+.parking-area-grid-3x3 {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 1.5rem;
+margin-top: 1.5rem;
+}
+
+.parking-area {
+background: #f9f9f9;
+border-radius: 1rem;
+padding: 1rem;
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+text-align: center;
+}
+
+/* .area-image {
+width: 100%;
+border-radius: 0.75rem;
+margin-bottom: 0.5rem;
+} */
+.button {
+    all: unset; /* Remove default button styles */
+    cursor: pointer;
+    width: 100%;
+    display: block;
+    background-color: white;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.area-image {
+    width: 100%;
+    height: 180px; /* Uniform height */
+    object-fit: cover;
+    display: block;
+}
+
+.area-name {
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0.8rem 0 0.2rem;
+    text-align: center;
+}
+
+.slot-summary {
+    font-size: 0.95rem;
+    color: #555;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-bottom: 1rem;
+    text-align: center;
+}
+
+
+
+.slot-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.slot-box {
+    width: 60px;
+    height: 60px;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #ccc;
+    position: relative;
+    background-color: #fff;
+}
+
+.slot-box.available {
+border-color: green;
+}
+
+.slot-box.occupied {
+border-color: red;
+background-color: #fdd;
+}
+
+.slot-label {
+font-size: 0.8rem;
+font-weight: bold;
+}
+
+.area-name{
+color: black;
+}

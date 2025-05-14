@@ -1,0 +1,63 @@
+/* General table styling */
+.parking-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: white;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Header row */
+.parking-table-header-row th {
+    background-color: rgba(0, 0, 0, 0.05); /* soft muted header */
+    font-weight: bold;
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-size: 14px;
+}
+
+/* Body rows */
+.parking-table-body td {
+    padding: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-size: 14px;
+    vertical-align: middle;
+    background-color: white;
+}
+
+/* Hover effect */
+.parking-table-body tr:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Let car plate column auto-size */
+.parking-table th:nth-child(2),
+.parking-table td:nth-child(2) {
+    width: 1%;
+    white-space: nowrap;
+}
+
+/* Optional: styling buttons (zone, filter) */
+.OverviewAdminBody button {
+    padding: 6px 12px;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.1);
+    color: black;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.OverviewAdminBody button:hover {
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+/* Optional: overview container padding */
+.OverviewAdminBody {
+    padding: 20px;
+    margin: 5% 10%;
+}
