@@ -1,58 +1,191 @@
-/* Modal Input Field Focus */
-.modal-content input:focus {
-  outline: none;
-  border-color: var(--first-color);
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-}
-
-/* Profile Info Box */
+/* Profile Info Boxes */
 .personal-infoBox,
 .account-securityBox,
 .vehicle-infoBox {
-  background-color: #f9f9f9;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 20px;
 }
 
 .personal-infoBox h3,
 .account-securityBox h3,
 .vehicle-infoBox h3 {
   font-family: var(--body-font);
-  font-weight: bold;
+  font-weight: 600;
   color: var(--first-color);
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
-/* Modal Close Button */
-.modal-close-button {
+/* Profile Image Container */
+.profile-image-container {
+  position: relative;
+  display: flex; /* Use flex to align image and button */
+  align-items: center; /* Vertically align items */
+  justify-content: space-between; /* Push items to ends */
+  margin-bottom: 15px;
+  width: 120px; /* Set a fixed width for the container */
+}
+
+/* Profile Image Wrapper */
+.profile-image-wrapper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-image-overlay {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 18px;
-  color: #aaa;
-  background: transparent;
-  border: none;
+  bottom: -5px;
+  right: -5px;
+  background-color: var(--first-color);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 50%;
   cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
 }
 
-.modal-close-button:hover {
-  color: #000;
+.profile-image-overlay:hover {
+  background-color: #045c2a;
 }
 
-/* Form Button Styles */
-.save-button,
-.cancel-button {
-  padding: 10px 15px;
+.upload-controls {
+  display: flex;
+  justify-content: flex-start; /* Align buttons to the left */
+  align-items: center;
+  margin-top: 15px;
+  gap: 10px; /* Space between buttons */
+}
+
+.upload-button,
+.cancel-upload-button {
+  padding: 10px 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.upload-button {
+  background-color: #006837;
+  color: white;
+}
+
+.upload-button:hover {
+  background-color: #00542e;
+}
+
+.cancel-upload-button {
+  background-color: #ddd;
+  color: #333;
+}
+
+.cancel-upload-button:hover {
+  background-color: #bbb;
+}
+
+.edit-button-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.edit-button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background-color: transparent;
+  border: 1px solid var(--first-color);
+  padding: 8px 12px;
+  border-radius: 6px;
   font-size: 1rem;
   cursor: pointer;
-  margin: 10px 5px 0;
-  transition: 0.2s;
+  color: var(--first-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Table styles */
+.edit-button:hover {
+  background-color: var(--first-color);
+  color: white;
+}
+
+/* Modal Input Field Focus */
+.modal-content input:focus {
+  outline: none;
+  border-color: var(--first-color);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+
+/* Modal Content Styling */
+.modal-content {
+  position: relative;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Modal Header */
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--first-color);
+  margin-bottom: 20px;
+}
+
+/* Buttons inside forms */
+.save-cancel-buttons {
+  display: flex;
+  gap: 10px; /* Space between buttons */
+}
+
+.save-button,
+.cancel-button {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin: 15px 10px 0;
+  transition: background-color 0.2s ease;
+}
+
+.save-button {
+  background-color: var(--first-color);
+  color: white;
+}
+
+.save-button:hover {
+  background-color: #045c2a;
+}
+
+.cancel-button {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.cancel-button:hover {
+  background-color: #bdbdbd;
+}
+
+/* Table Styles */
 .__table__ {
   width: 100%;
   border-collapse: collapse;
@@ -60,52 +193,31 @@
 
 .__table__ th,
 .__table__ td {
-  padding: 10px;
+  padding: 12px 15px;
   text-align: left;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #e0e0e0;
 }
 
 .__table__ th {
-  background-color: #f1f1f1;
-  font-weight: bold;
+  background-color: #f7f7f7;
+  font-weight: 600;
 }
 
 .__table__ tr:hover {
-  background-color: #f9f9f9;
-}
-
-.history-table th,
-.history-table td {
-  padding: 12px 10px;
-  text-align: left;
-}
-
-.history-table th {
-  background-color: #f0f0f0;
-}
-
-.history-table tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-.history-table tr:hover {
-  background-color: #f1f1f1;
-}
-
-/* Add padding to the modal content */
-.modal-content {
-  padding: 20px;
+  background-color: #fafafa;
 }
 
 /* Account Section */
 .accountFullname {
-  font-size: 22px;
-  font-weight: bold;
-  color: #333;
+  font-size: 24px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 5px; /* Added margin for spacing */
 }
 
 .accountDisplaytype {
   color: #888;
+  margin-bottom: 3px; /* Added margin for spacing */
 }
 
 .accountDisplayemail {
@@ -120,54 +232,24 @@
 }
 
 .section-title {
-  font-size: 18px;
+  font-size: 20px;
   color: var(--first-color);
   margin-bottom: 15px;
 }
 
-/* Modal Header */
-.modal-header {
-  font-size: 1.2rem;
-  font-weight: 600;
+/* Change Photo Button Styling */
+.change-photo-button {
+  background-color: transparent;
   color: var(--first-color);
-  margin-bottom: 20px;
-}
-
-.upload-button {
-  background-color: #006837;
-  color: white;
-  border: none;
-  padding: 10px 16px;
-  border-radius: 8px;
+  border: 1px solid var(--first-color);
+  padding: 8px 12px;
+  border-radius: 6px;
   cursor: pointer;
-  font-weight: 500;
-  margin-top: 12px;
-  transition: background-color 0.3s ease;
+  font-size: 14px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.upload-button:hover {
-  background-color: #00542e;
-}
-
-.save-button {
-  position: absolute;
-  right: 20px; /* Adjust the distance from the right edge as needed */
-  bottom: 20px; /* Adjust the distance from the bottom edge */
-  padding: 10px 20px;
-  background-color: #4CAF50; /* Green background */
+.change-photo-button:hover {
+  background-color: var(--first-color);
   color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s ease;
-}
-
-.save-button:hover {
-  background-color: #45a049; /* Darker green on hover */
-}
-
-.save-button:active {
-  background-color: #388e3c; /* Even darker green when clicked */
 }
