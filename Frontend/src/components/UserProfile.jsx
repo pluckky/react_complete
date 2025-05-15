@@ -65,6 +65,7 @@ const UserProfile = () => {
       .post("http://localhost:8080/upload-profile-pic", formData, { withCredentials: true })
       .then(() => {
         alert("Profile picture uploaded successfully");
+        window.location.reload(); 
         return axios.get("http://localhost:8080/personalized-account", { withCredentials: true });
       })
       .then((res) => {
