@@ -89,33 +89,32 @@ const UserProfile = () => {
     setTempProfile((prev) => ({ ...prev, [field]: value }));
   };
 
- const handleSave = () => {
-  const updatedProfile = {
-    first_name: tempProfile.firstName,
-    last_name: tempProfile.lastName,
-    email: tempProfile.email,
-    password: tempProfile.password, // only include if you're allowing password change
-    vehicles: [
-      {
-        vehicle_type: tempProfile.vehicleType,
-        vehicle_plate: tempProfile.plateNumber,
-      },
-    ],
+  const handleSave = () => {
+    const updatedProfile = {
+      first_name: tempProfile.firstName,
+      last_name: tempProfile.lastName,
+      email: tempProfile.email,
+      password: tempProfile.password,
+      vehicles: [
+        {
+          vehicle_type: tempProfile.vehicleType,
+          vehicle_plate: tempProfile.plateNumber,
+        },
+      ],
+    };
+
+    axios
+      .put("http://localhost:8080/update-profile", updatedProfile, { withCredentials: true })
+      .then(() => {
+        setProfile(tempProfile);
+        setEditingField(null);
+        alert("Profile updated successfully");
+      })
+      .catch((err) => {
+        console.error("Error updating profile:", err);
+        alert("Failed to update profile");
+      });
   };
-
-  axios
-    .put("http://localhost:8080/update-profile", updatedProfile, { withCredentials: true })
-    .then(() => {
-      setProfile(tempProfile);
-      setEditingField(null);
-      alert("Profile updated successfully");
-    })
-    .catch((err) => {
-      console.error("Error updating profile:", err);
-      alert("Failed to update profile");
-    });
-};
-
 
   const handleLogout = () => {
     axios
@@ -156,14 +155,14 @@ const UserProfile = () => {
               <div className="profile-sections-box">
                 <h2 className="My-profile-title">My Profile</h2>
                 <div className="profile-header">
-                  <div className="profile-image-container">
-                    <label htmlFor="profile-image-input" className="profile-image-label">
-                      <img
-                        src={profile.image}
-                        alt="Profile"
-                        className="profile-image"
-                      />
-                      <div className="profile-image-overlay">Change Photo</div>
+                  <div className="profile-image-container-wrapper">
+                    <div className="profile-image-container">
+                      <div className="profile-image-wrapper">
+                        <img src={profile.image} alt="Profile" className="profile-image" />
+                      </div>
+                    </div>
+                    <label htmlFor="profile-image-input" className="change-photo-button">
+                      Change Photo
                     </label>
                     <input
                       id="profile-image-input"
@@ -172,27 +171,52 @@ const UserProfile = () => {
                       onChange={handleFileChange}
                       style={{ display: "none" }}
                     />
-                    {selectedFile && (
-                      <button className="upload-button" onClick={handleFileUpload}>
-                        Save
-                      </button>
-                    )}
                   </div>
-
                   <div className="profile-info-container">
-                    <h2 className="accountFullname">{profile.firstName} {profile.lastName}</h2>
+                    <h2 className="accountFullname">
+                      {profile.firstName} {profile.lastName}
+                    </h2>
                     <p className="accountDisplaytype">{profile.accountType}</p>
                     <p className="accountDisplayemail">{profile.email}</p>
                   </div>
                 </div>
-
+                <div className="profile-actions">
+                  {editingField && (
+                    <div className="save-cancel-buttons">
+                      <button className="save-button" onClick={handleSave}>
+                        Save
+                      </button>
+                      <button className="cancel-button" onClick={() => setEditingField(null)}>
+                        Cancel
+                      </button>
+                    </div>
+                  )}
+                  {selectedFile && (
+                    <div className="upload-controls">
+                      <button className="upload-button" onClick={handleFileUpload}>
+                        Save
+                      </button>
+                      <button className="cancel-upload-button" onClick={() => setSelectedFile(null)}>
+                        Cancel
+                      </button>
+                    </div>
+                  )}
+                </div>
                 <div className="personal-infoBox">
                   <h3 className="section-title">Personal Information</h3>
                   <div className="info-content">
-                    <p><strong>First Name:</strong> {profile.firstName}</p>
-                    <p><strong>Last Name:</strong> {profile.lastName}</p>
-                    <p><strong>Email:</strong> {profile.email}</p>
-                    <p><strong>Student Number:</strong> {profile.studentNumber}</p>
+                    <p>
+                      <strong>First Name:</strong> {profile.firstName}
+                    </p>
+                    <p>
+                      <strong>Last Name:</strong> {profile.lastName}
+                    </p>
+                    <p>
+                      <strong>Email:</strong> {profile.email}
+                    </p>
+                    <p>
+                      <strong>Student Number:</strong> {profile.studentNumber}
+                    </p>
                   </div>
                   <div className="edit-button-container">
                     <button onClick={() => handleEditClick("personal")} className="edit-button">
@@ -204,7 +228,9 @@ const UserProfile = () => {
                 <div className="account-securityBox">
                   <h3 className="content-title">Account Security</h3>
                   <div className="security-content">
-                    <p><strong>Password:</strong> {profile.password}</p>
+                    <p>
+                      <strong>Password:</strong> {profile.password}
+                    </p>
                   </div>
                   <div className="edit-button-container">
                     <button onClick={() => handleEditClick("security")} className="edit-button">
@@ -216,8 +242,12 @@ const UserProfile = () => {
                 <div className="vehicle-infoBox">
                   <h3 className="content-title">Vehicle Information</h3>
                   <div className="vehicle-content">
-                    <p><strong>Type of Vehicle:</strong> {profile.vehicleType}</p>
-                    <p><strong>Plate Number:</strong> {profile.plateNumber}</p>
+                    <p>
+                      <strong>Type of Vehicle:</strong> {profile.vehicleType}
+                    </p>
+                    <p>
+                      <strong>Plate Number:</strong> {profile.plateNumber}
+                    </p>
                   </div>
                   <div className="edit-button-container">
                     <button onClick={() => handleEditClick("vehicle")} className="edit-button">
@@ -260,7 +290,8 @@ const UserProfile = () => {
           <div className="modal">
             <div className="modal-content">
               <h3 className="modal-title">
-                Edit {editingField === "personal"
+                Edit{" "}
+                {editingField === "personal"
                   ? "Personal Info"
                   : editingField === "security"
                   ? "Security"
